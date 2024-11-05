@@ -209,8 +209,13 @@ async def process_mutual_sympathy_messages(event, phone, client):
 
             sheet_manager.mutual_sympathy(city=config.get("city"), account=phone, username=username)
             logger.info(f"Взаимная симпатия отправлено в таблицу {phone}: {event.raw_text}")
+        elif hasattr(entity, 'url'):
+            url = entity.url
+            sheet_manager.mutual_sympathy(city=config.get("city"), account=phone, username=url)
+            logger.info(f"Взаимная симпатия отправлено в таблицу {phone}: {event.raw_text}")
+
         else:
-            logger.warning(f"Сущность не содержит user_id: {entity}")
+            logger.warning(f"Сущность не содержит user_id или url: {entity}")
     else:
         logger.warning(f"В сообщении не найдены сущности: {event.raw_text}")
 

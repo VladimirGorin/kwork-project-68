@@ -17,6 +17,8 @@ class SheetsManager:
             print(f"An error occurred: {e}")
 
     def mutual_sympathy(self, account, username, city):
+        print(self.sheet)
+        print(account, username, city)
         worksheet = self.sheet.sheet1
 
         free_row = 1
